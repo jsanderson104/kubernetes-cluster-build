@@ -94,9 +94,19 @@ The Components of the Kubernetes Cluster:
   The Kubernetes cluster nodes (CENTOS9) default crypto-policy attempts to use a non-FIPS approved cipher when trying to join the FreeIPA servers and automatically fails.
   Therefore, we have to put the cluster in FIPS:AD-SUPPORT  ``` sudo update-crypto-policies --set FIPS:AD-SUPPORT ``` crypto policy so the ipa join will be forced at the kernel level to use a stronger cipher to talk to the server.
 ***
+
+# How to install the driver for NFS CSI</h4>
+This NFS CSI "driver" is needed to allow deplyoments/pods,etc to dynamically provision NFS storage. <br>
+We can request storage from the storageclass with just a PVC since it the driver dynamically makes the PV for us when we make the storage claim.<br>
+<a href=https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-v4.13.4.md> Instructions for Installing NFS Driver </a>
+
+To install it, run this command on the master node.
+```
+curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/v4.13.4/deploy/install-driver.sh | bash -s v4.13.4 --
+```
+In my home lab, I'm using a second disk on my Ansible VM and exporting it with NFS to the subnet where my nodes live.
   
-  
-More to come... 
+
 
 # HEADLAMP NOTES:
 If you're wondering how to Login to HeadLamp, you can generate a login token using this command: 
