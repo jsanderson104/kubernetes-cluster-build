@@ -92,7 +92,9 @@ The Components of the Kubernetes Cluster:
 ***
   Let's talk about FIPS mode. The ONLY reason I developed the FIPS stuff in this role was because my current deployment of a FreeIPA cluster was built with FIPS 140.2 enabled.
   The Kubernetes cluster nodes (CENTOS9) default crypto-policy attempts to use a non-FIPS approved cipher when trying to join the FreeIPA servers and automatically fails.
-  Therefore, we have to put the cluster in FIPS:AD-SUPPORT  ``` sudo update-crypto-policies --set FIPS:AD-SUPPORT ``` crypto policy so the ipa join will be forced at the kernel level to use a stronger cipher to talk to the server.
+  Therefore, we have to put the cluster in FIPS:AD-SUPPORT  ``` sudo update-crypto-policies --set FIPS:AD-SUPPORT ``` crypto policy so the ipa join will be forced at the kernel level to use a stronger cipher to talk to the server. I have since re-deployed my FreeIPA cluster without FIPS to make things simpler for testing and learning purposes. The functionality in the role still works.
+  WARNING: Some Java applets inside containers will fail if FIPS is running. The Java process in the container will have an error mentioning libcrypto.so and MD (aka MD5).
+           Guacamole Frontend container is an example of this problem. It runs a openjdk applet. 
 ***
 
 # How to install the driver for NFS CSI</h4>
