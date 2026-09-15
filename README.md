@@ -41,14 +41,17 @@ Each Future Kubernetes node should have:
 * At least 4GB RAM
 * At least 2 CPU cores, preferably 4.
 
-<b>I have a total of 7 VM's running:</b>
-1. ansible "server"
-2. ipa server 1
-3. ipa server 2
-4. kubernetes master node
-5. kubernetes worker1
-6. kubernetes worker2
-7. kubernetes worker3
+<b>I have a total of 8 VM's running:</b>
+1. ansible "server" (CentOS 9)
+2. ipa server 1  (Centos 8)
+3. ipa server 2  (CentOS 8)
+4. kubernetes master node (CentOS 9)
+5. kubernetes worker1 (CentOS 9)
+6. kubernetes worker2  (CentOS 9)
+7. kubernetes worker3  (CentOS 9)
+8. kubernetes worker4  (CentOS 9)
+9. 
+
 
 <b>Lab Setup:</b>
 1. Each VM is in the hosts file in this role via a template file
@@ -87,6 +90,7 @@ The Components of the Kubernetes Cluster:
   * <b> Control-Plane </b>           --> This is the brains of the operation -aka- "master" nodes. 
   * <b> CoreDNS </b>                 --> This is what allows a pod to talk to another pod on the same or a different host by container name via POD NET
   * <b> HeadLamp </b>                --> This isn't necessary for the Kubernetes Cluster to function at all. This is just a handy addon that gives us a Web Interface to manage/monitor the Cluster with.
+  * <b> NFS CSI Driver </b>          --> This isn't completely necessary for the cluster to function but it is <b>recommended</b>. It allows dynamic PVCs to a NFS share. 
 ---
 
 ***
