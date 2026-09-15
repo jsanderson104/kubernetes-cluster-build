@@ -46,6 +46,7 @@
         prompt: "WARNING: You are about to install a Kubernetes Cluster on your system which involves changing the system in some drastic ways.. Press ENTER to continue or Ctrl+C then 'A' to abort"
 
     - name: FIPS MODE ENABLED
+      when: v_configureFIPS is true
       ansible.builtin.pause:
         prompt: "WARNING: You have the FIPS MODE VARIABLE ENABLED.. Press ENTER to continue or Ctrl+C then 'A' to abort"
 
